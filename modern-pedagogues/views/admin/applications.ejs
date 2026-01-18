@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container">
+    <h1>Tutor Applications</h1>
+    <% if (!applications.length) { %>
+      <p>No applications yet.</p>
+    <% } %>
+    <% applications.forEach((application) => { %>
+      <div class="card">
+        <p>Status: <%= application.status %></p>
+        <p><%= application.message %></p>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<%- include('../partials/footer') %>

@@ -1,0 +1,34 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container">
+    <h1>Users</h1>
+    <div class="table">
+      <div class="table-row header">
+        <div>Name</div>
+        <div>Email</div>
+        <div>Role</div>
+        <div>Actions</div>
+      </div>
+      <% users.forEach((item) => { %>
+        <div class="table-row">
+          <div><%= item.name %></div>
+          <div><%= item.email %></div>
+          <div><%= item.role %></div>
+          <div class="table-actions">
+            <form method="POST" action="/admin/users/reset">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+              <input type="hidden" name="userId" value="<%= item.id %>" />
+              <button class="link-button" type="submit">Reset password</button>
+            </form>
+            <form method="POST" action="/admin/users/delete">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+              <input type="hidden" name="userId" value="<%= item.id %>" />
+              <button class="link-button" type="submit">Delete</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

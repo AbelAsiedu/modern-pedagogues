@@ -1,0 +1,38 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container">
+    <h1>Manage Products</h1>
+    <form method="POST" enctype="multipart/form-data" class="form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <label>Title
+        <input type="text" name="title" required />
+      </label>
+      <label>Description
+        <textarea name="description" rows="3"></textarea>
+      </label>
+      <label>Price (USD)
+        <input type="number" name="price" step="0.01" required />
+      </label>
+      <label>Image
+        <input type="file" name="image" />
+      </label>
+      <button class="button" type="submit">Add product</button>
+    </form>
+
+    <div class="table">
+      <div class="table-row header">
+        <div>Title</div>
+        <div>Price</div>
+        <div>Created</div>
+      </div>
+      <% products.forEach((product) => { %>
+        <div class="table-row">
+          <div><%= product.title %></div>
+          <div>$<%= (product.price_cents / 100).toFixed(2) %></div>
+          <div><%= product.created_at %></div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

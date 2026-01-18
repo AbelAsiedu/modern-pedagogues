@@ -1,0 +1,24 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container">
+    <h1>Resource Store</h1>
+    <div class="grid-3">
+      <% if (!products.length) { %>
+        <p>No products yet. Admins can add products in the admin panel.</p>
+      <% } %>
+      <% products.forEach((product) => { %>
+        <div class="card">
+          <h3><%= product.title %></h3>
+          <p><%= product.description %></p>
+          <p class="price">$<%= (product.price_cents / 100).toFixed(2) %></p>
+          <form method="POST" action="/cart/add">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <input type="hidden" name="productId" value="<%= product.id %>" />
+            <button class="button" type="submit">Add to cart</button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

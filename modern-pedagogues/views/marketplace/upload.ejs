@@ -1,0 +1,38 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container narrow">
+    <h1>Upload content</h1>
+    <form method="POST" enctype="multipart/form-data" class="form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <label>Title
+        <input type="text" name="title" required />
+      </label>
+      <label>Description
+        <textarea name="description" rows="4"></textarea>
+      </label>
+      <label>Category
+        <input type="text" name="category" required />
+      </label>
+      <label>Tags
+        <input type="text" name="tags" placeholder="comma separated" />
+      </label>
+      <label>File
+        <input type="file" name="file" />
+      </label>
+      <label>Thumbnail
+        <input type="file" name="thumbnail" />
+      </label>
+      <label>Version name
+        <input type="text" name="version_variant" value="standard" />
+      </label>
+      <label>Price (USD)
+        <input type="number" name="version_price" step="0.01" />
+      </label>
+      <label>License
+        <input type="text" name="version_license" value="personal" />
+      </label>
+      <button class="button" type="submit">Save draft</button>
+    </form>
+  </div>
+</section>
+<%- include('../partials/footer') %>

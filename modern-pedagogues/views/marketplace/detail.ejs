@@ -1,0 +1,61 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container">
+    <h1><%= detail.content.title %></h1>
+    <p><%= detail.content.description %></p>
+    <div class="card">
+      <h3>Versions</h3>
+      <% detail.versions.forEach((version) => { %>
+        <div class="version">
+          <strong><%= version.variant %></strong>
+          <span>$<%= (version.price_cents / 100).toFixed(2) %></span>
+          <span class="pill"><%= version.license %></span>
+          <form method="POST" action="/marketplace/<%= detail.content.id %>/purchase">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <input type="hidden" name="versionId" value="<%= version.id %>" />
+            <button class="button" type="submit">Purchase</button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
+    <div class="card">
+      <form method="POST" action="/marketplace/<%= detail.content.id %>/favorite" class="inline">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <button class="button ghost" type="submit"><%= isFavorite ? 'Favorited' : 'Add to favorites' %></button>
+      </form>
+      <form method="POST" action="/marketplace/<%= detail.content.id %>/download" class="inline">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <button class="button" type="submit">Download</button>
+      </form>
+    </div>
+    <div class="card">
+      <h3>Reviews</h3>
+      <% if (!detail.reviews.length) { %>
+        <p>No reviews yet.</p>
+      <% } %>
+      <% detail.reviews.forEach((review) => { %>
+        <div class="review">
+          <strong><%= review.rating %> stars</strong>
+          <p><%= review.comment %></p>
+        </div>
+      <% }) %>
+      <form method="POST" action="/marketplace/<%= detail.content.id %>/review" class="form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <label>Rating
+          <select name="rating">
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          </select>
+        </label>
+        <label>Comment
+          <textarea name="comment" rows="3" required></textarea>
+        </label>
+        <button class="button" type="submit">Submit review</button>
+      </form>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

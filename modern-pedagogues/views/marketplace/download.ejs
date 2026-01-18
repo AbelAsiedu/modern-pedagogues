@@ -1,0 +1,13 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container narrow">
+    <h1>Download ready</h1>
+    <p>Your download is ready for <strong><%= content.title %></strong>.</p>
+    <% if (content.file_path) { %>
+      <a class="button" href="/uploads/<%= content.file_path %>">Download file</a>
+    <% } else { %>
+      <p class="muted">File not available yet.</p>
+    <% } %>
+  </div>
+</section>
+<%- include('../partials/footer') %>

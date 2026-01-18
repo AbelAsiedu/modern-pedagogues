@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %> | The Modern Pedagogues</title>
+  <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-grid">
+    <a class="logo" href="/">The Modern Pedagogues</a>
+    <nav class="nav">
+      <a href="/about">About</a>
+      <a href="/curriculum">Curriculum</a>
+      <a href="/tutors">Tutors</a>
+      <a href="/resources">Resources</a>
+      <a href="/apply">Apply</a>
+      <a href="/marketplace">Marketplace</a>
+      <a href="/store">Store</a>
+      <a href="/contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <% if (user) { %>
+        <a href="/dashboard">Dashboard</a>
+        <% if (isCreator) { %>
+          <a href="/creator/dashboard">Creator</a>
+        <% } %>
+        <% if (isAdmin) { %>
+          <a href="/admin/dashboard">Admin</a>
+        <% } %>
+        <form method="POST" action="/logout" class="inline">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <button type="submit" class="link-button">Logout</button>
+        </form>
+      <% } else { %>
+        <a href="/login">Login</a>
+        <a class="button" href="/signup">Sign up</a>
+      <% } %>
+    </div>
+  </div>
+</header>
+<main class="site-main">

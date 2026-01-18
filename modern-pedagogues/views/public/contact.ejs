@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container narrow">
+    <h1>Contact us</h1>
+    <% if (success) { %>
+      <div class="alert success">Thanks for your message. We'll reply soon.</div>
+    <% } %>
+    <form method="POST" class="form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <label>Name
+        <input type="text" name="name" required />
+      </label>
+      <label>Email
+        <input type="email" name="email" required />
+      </label>
+      <label>Subject
+        <input type="text" name="subject" />
+      </label>
+      <label>Message
+        <textarea name="message" rows="5" required></textarea>
+      </label>
+      <button type="submit" class="button">Send message</button>
+    </form>
+  </div>
+</section>
+<%- include('../partials/footer') %>

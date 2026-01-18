@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container">
+    <h1>Messages</h1>
+    <% if (!messages.length) { %>
+      <p>No messages yet.</p>
+    <% } %>
+    <% messages.forEach((message) => { %>
+      <div class="card">
+        <h3><%= message.subject %></h3>
+        <p><strong><%= message.name %></strong> (<%= message.email %>)</p>
+        <p><%= message.message %></p>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<%- include('../partials/footer') %>

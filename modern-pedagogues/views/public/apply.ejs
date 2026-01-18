@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container narrow">
+    <h1>Tutor application</h1>
+    <% if (success) { %>
+      <div class="alert success">Thanks for applying! We'll review your application soon.</div>
+    <% } %>
+    <form method="POST" class="form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <label>Tell us about your experience
+        <textarea name="message" rows="5" required></textarea>
+      </label>
+      <button class="button" type="submit">Submit application</button>
+    </form>
+  </div>
+</section>
+<%- include('../partials/footer') %>

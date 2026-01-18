@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container narrow">
+    <h1>Reset password</h1>
+    <% if (sent) { %>
+      <div class="alert success">If that email exists, a reset link has been sent.</div>
+    <% } %>
+    <form method="POST" class="form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <label>Email
+        <input type="email" name="email" required />
+      </label>
+      <button type="submit" class="button">Send reset link</button>
+    </form>
+  </div>
+</section>
+<%- include('../partials/footer') %>

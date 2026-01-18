@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container">
+    <h1>Content Pages</h1>
+    <form method="POST" class="form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <label>Slug
+        <input type="text" name="slug" required />
+      </label>
+      <label>Title
+        <input type="text" name="title" required />
+      </label>
+      <label>Body
+        <textarea name="body" rows="4"></textarea>
+      </label>
+      <button class="button" type="submit">Save page</button>
+    </form>
+    <div class="table">
+      <div class="table-row header">
+        <div>Slug</div>
+        <div>Title</div>
+      </div>
+      <% pages.forEach((page) => { %>
+        <div class="table-row">
+          <div><%= page.slug %></div>
+          <div><%= page.title %></div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

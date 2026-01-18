@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container">
+    <h1>Marketplace Transactions</h1>
+    <div class="table">
+      <div class="table-row header">
+        <div>ID</div>
+        <div>Buyer</div>
+        <div>Amount</div>
+        <div>Status</div>
+      </div>
+      <% transactions.forEach((transaction) => { %>
+        <div class="table-row">
+          <div>#<%= transaction.id %></div>
+          <div><%= transaction.buyer_id %></div>
+          <div>$<%= (transaction.amount_cents / 100).toFixed(2) %></div>
+          <div><%= transaction.status %></div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

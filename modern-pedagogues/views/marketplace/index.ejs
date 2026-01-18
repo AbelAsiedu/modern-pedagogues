@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container">
+    <h1>Marketplace</h1>
+    <form class="filters" method="GET">
+      <input type="text" name="search" placeholder="Search" value="<%= query.search || '' %>" />
+      <select name="category">
+        <option value="">All categories</option>
+        <option value="Math" <%= query.category === 'Math' ? 'selected' : '' %>>Math</option>
+        <option value="Science" <%= query.category === 'Science' ? 'selected' : '' %>>Science</option>
+        <option value="Literacy" <%= query.category === 'Literacy' ? 'selected' : '' %>>Literacy</option>
+      </select>
+      <select name="price">
+        <option value="">All prices</option>
+        <option value="free" <%= query.price === 'free' ? 'selected' : '' %>>Free</option>
+        <option value="paid" <%= query.price === 'paid' ? 'selected' : '' %>>Paid</option>
+      </select>
+      <select name="sort">
+        <option value="newest" <%= query.sort === 'newest' ? 'selected' : '' %>>Newest</option>
+        <option value="top-rated" <%= query.sort === 'top-rated' ? 'selected' : '' %>>Top rated</option>
+        <option value="most-downloaded" <%= query.sort === 'most-downloaded' ? 'selected' : '' %>>Most downloaded</option>
+      </select>
+      <button class="button" type="submit">Apply</button>
+    </form>
+    <div class="grid-3">
+      <% if (!items.length) { %>
+        <p>No content yet.</p>
+      <% } %>
+      <% items.forEach((item) => { %>
+        <div class="card">
+          <h3><%= item.title %></h3>
+          <p><%= item.description %></p>
+          <p class="pill"><%= item.category %></p>
+          <p>Rating: <%= item.rating %> (<%= item.rating_count %>)</p>
+          <a class="button ghost" href="/marketplace/<%= item.id %>">View</a>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

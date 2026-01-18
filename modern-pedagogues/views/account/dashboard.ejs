@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container">
+    <h1>Your Dashboard</h1>
+    <p>Welcome back, <%= user.name %>.</p>
+    <div class="card">
+      <h3>Recent orders</h3>
+      <% if (!orders.length) { %>
+        <p>No purchases yet.</p>
+      <% } else { %>
+        <ul class="list">
+          <% orders.forEach((order) => { %>
+            <li>#<%= order.id %> — $<%= (order.total_cents / 100).toFixed(2) %> — <%= order.status %></li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

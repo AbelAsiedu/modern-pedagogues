@@ -1,0 +1,14 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container narrow">
+    <h1>Set a new password</h1>
+    <form method="POST" class="form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <label>New password
+        <input type="password" name="password" required />
+      </label>
+      <button type="submit" class="button">Update password</button>
+    </form>
+  </div>
+</section>
+<%- include('../partials/footer') %>

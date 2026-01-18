@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Modern Pedagogues
 
-## Getting Started
+Production-ready Node.js/Express + EJS application for home tutoring and creator marketplace. Includes PostgreSQL for production, SQLite for local development, Stripe (optional), and a minimal optional Next.js frontend.
 
-First, run the development server:
+## Setup
 
 ```bash
+npm install
+cp .env.example .env
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app defaults to SQLite when `DATABASE_URL` is not set.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Purpose |
+| --- | --- |
+| `DATABASE_URL` | Postgres connection string (production) |
+| `SQLITE_PATH` | Local SQLite path (default `./data/dev.sqlite`) |
+| `SESSION_SECRET` | Session cookie signing secret |
+| `STRIPE_SECRET` | Stripe secret key (optional) |
+| `STRIPE_WEBHOOK_SECRET` | Stripe webhook secret (optional) |
+| `SMTP_*` | SMTP settings for Nodemailer |
+| `SMTP_FROM` | From address for emails |
+| `FORCE_HTTPS` | Redirect HTTP to HTTPS when true |
+| `TRUST_PROXY` | Set `true` on Heroku |
+| `COOKIE_DOMAIN` | Optional cookie domain |
+| `SEED_ADMIN` | Seed dev admin user (default true in dev) |
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev` — start with nodemon
+- `npm start` — start production server
+- `npm test` — run Jest tests
+- `npm run heroku-postbuild` — build optional frontend
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Optional Next.js frontend
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The `frontend/` folder is a minimal Next.js app. Build it via:
 
-## Deploy on Vercel
+```bash
+cd frontend
+npm install
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The Express server will serve `frontend/out` if present.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Heroku deployment
+
+- Use Node 18/20/24
+- Add `DATABASE_URL` (Postgres)
+- Set `TRUST_PROXY=true`
+- Configure Stripe/SMTP env vars as needed
+
+## Tests
+
+```bash
+npm test
+```

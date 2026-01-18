@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container">
+    <h1>Admin Dashboard</h1>
+    <div class="grid-3">
+      <div class="card"><h3><%= metrics.users %></h3><p>Users</p></div>
+      <div class="card"><h3><%= metrics.orders %></h3><p>Orders</p></div>
+      <div class="card"><h3><%= metrics.content %></h3><p>Marketplace Content</p></div>
+    </div>
+    <div class="button-row">
+      <a class="button" href="/admin/products">Manage Products</a>
+      <a class="button" href="/admin/orders">Orders</a>
+      <a class="button" href="/admin/users">Users</a>
+      <a class="button" href="/admin/messages">Messages</a>
+      <a class="button" href="/admin/marketplace">Marketplace</a>
+      <a class="button" href="/admin/pages">Content Pages</a>
+      <a class="button" href="/admin/applications">Applications</a>
+      <a class="button" href="/admin/media">Media</a>
+      <a class="button" href="/admin/transactions">Transactions</a>
+    </div>
+  </div>
+</section>
+<%- include('../partials/footer') %>

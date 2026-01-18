@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container narrow">
+    <h1>Checkout</h1>
+    <% if (success) { %>
+      <div class="alert success">Payment complete. Your resources are available in your dashboard.</div>
+    <% } else { %>
+      <p>Processing your order...</p>
+    <% } %>
+  </div>
+</section>
+<%- include('../partials/footer') %>

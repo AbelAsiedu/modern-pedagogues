@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container">
+    <h1>Marketplace moderation</h1>
+    <% if (!items.length) { %>
+      <p>No content yet.</p>
+    <% } %>
+    <% items.forEach((item) => { %>
+      <div class="card">
+        <h3><%= item.title %> <span class="pill"><%= item.status %></span></h3>
+        <p><%= item.description %></p>
+        <form method="POST" action="/admin/marketplace/<%= item.id %>/moderate" class="inline">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <select name="status">
+            <option value="published">Approve</option>
+            <option value="flagged">Flag</option>
+            <option value="draft">Draft</option>
+          </select>
+          <button class="button" type="submit">Update</button>
+        </form>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<%- include('../partials/footer') %>

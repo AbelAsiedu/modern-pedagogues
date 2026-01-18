@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+<section class="section">
+  <div class="container">
+    <h1>Media Manager</h1>
+    <% if (!files.length) { %>
+      <p>No uploads yet.</p>
+    <% } %>
+    <ul class="list">
+      <% files.forEach((file) => { %>
+        <li><a href="/uploads/<%= file %>"><%= file %></a></li>
+      <% }) %>
+    </ul>
+  </div>
+</section>
+<%- include('../partials/footer') %>
